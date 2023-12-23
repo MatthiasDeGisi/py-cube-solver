@@ -44,6 +44,12 @@ class Cube:
             return self.__left
 
     def __str__(self) -> str:
+        """Return a visual representation of the cube.
+
+        Returns:
+            str: Visual representation of the cube, in a sideways t form
+        """
+        # the top 3 lines, representing the top side
         cube_string = ""
         for item in self.get_side("top"):
             cube_string += fg(0, 0, 0) + "X X X "
@@ -51,6 +57,7 @@ class Cube:
                 cube_string += inner_item + " "
             cube_string += fg(0, 0, 0) + "X X X X X X\n"
 
+        # the middle 3 lines, representing the left, front, right, and back sides
         for row in range(3):
             for item in self.get_side("left")[row]:
                 cube_string += item + " "
@@ -62,6 +69,7 @@ class Cube:
                 cube_string += item + " "
             cube_string += "\n"
 
+        # the bottom 3 lines, representing the bottom side
         for item in self.get_side("bottom"):
             cube_string += fg(0, 0, 0) + "X X X "
             for inner_item in item:
