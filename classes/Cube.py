@@ -72,6 +72,10 @@ class Cube:
         for i in range(3):
             self.__left[i][2] = original_bottom[0][i]
 
+    def f_turn_prime(self) -> None:
+        for i in range(3):
+            self.f_turn()
+
     def __str__(self) -> str:
         """Return a visual representation of the cube.
 
