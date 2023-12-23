@@ -42,7 +42,8 @@ class Cube:
         return self.side_mapping[side]
 
     def f_turn(self) -> None:
-        """Turn the front side of the cube."""
+        """Turn the front side of the cube clockwise.
+        """
 
         # Save the original states for reference
         original_front = [row[:] for row in self.__front]
@@ -73,6 +74,8 @@ class Cube:
             self.__left[i][2] = original_bottom[0][i]
 
     def f_turn_prime(self) -> None:
+        """Turn the front side of the cube counter-clockwise.
+        """
         for i in range(3):
             self.f_turn()
 
