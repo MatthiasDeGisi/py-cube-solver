@@ -18,7 +18,7 @@ class Cube:
         self.__back = [[B, B, B], [B, B, B], [B, B, B]]
         self.__top = [[W, W, W], [W, W, W], [W, W, W]]
         self.__bottom = [[Y, Y, Y], [Y, Y, Y], [Y, Y, Y]]
-        self.__right = [[R, R, R], [R, R, R], [R, R, R]]
+        self.__right = [[R, R, Y], [R, R, G], [R, R, B]]
         self.__left = [[O, O, O], [O, O, O], [O, O, O]]
         # side mapping for getters and setters
         self.side_mapping = {
@@ -42,8 +42,7 @@ class Cube:
         return self.side_mapping[side]
 
     def f_turn(self) -> None:
-        """Turn the front side of the cube clockwise.
-        """
+        """Turn the front side of the cube clockwise."""
 
         # Save the original states for reference
         original_front = [row[:] for row in self.__front]
@@ -74,10 +73,44 @@ class Cube:
             self.__left[i][2] = original_bottom[0][i]
 
     def f_turn_prime(self) -> None:
-        """Turn the front side of the cube counter-clockwise.
-        """
+        """Turn the front side of the cube counter-clockwise."""
         for i in range(3):
             self.f_turn()
+
+    def b_turn(self) -> None:
+        """Turn the back side of the cube clockwise."""
+        # Save the original states for reference
+        original_back = [row[:] for row in self.__back]
+        original_top = [row[:] for row in self.__top]
+        original_left = [row[:] for row in self.__left]
+        original_bottom = [row[:] for row in self.__bottom]
+        original_right = [row[:] for row in self.__right]
+
+        # turn the back side
+        for i in range(3):
+            for j in range(3):
+                self.__back[j][2 - i] = original_back[i][j]
+
+        # update the top side
+        for i in range(3):
+            self.__top[0][i] = original_right[i][2]
+
+        # update the left side
+        for i in range(3):
+            self.__left[i][0] = original_top[0][2 - i]
+
+        # update the bottom side
+        for i in range(3):
+            self.__bottom[2][i] = original_left[i][0]
+
+        # update the right side
+        for i in range(3):
+            self.__right[i][2] = original_bottom[2][2 - i]
+
+    def b_turn_prime(self) -> None:
+        """Turn the back side of the cube counter-clockwise."""
+        for i in range(3):
+            self.b_turn()
 
     def __str__(self) -> str:
         """Return a visual representation of the cube.
