@@ -18,7 +18,7 @@ class Cube:
         self.__back = [[B, B, B], [B, B, B], [B, B, B]]
         self.__top = [[W, W, W], [W, W, W], [W, W, W]]
         self.__bottom = [[Y, Y, Y], [Y, Y, Y], [Y, Y, Y]]
-        self.__right = [[R, R, Y], [R, R, G], [R, R, B]]
+        self.__right = [[R, R, R], [R, R, R], [R, R, R]]
         self.__left = [[O, O, O], [O, O, O], [O, O, O]]
         # side mapping for getters and setters
         self.side_mapping = {
