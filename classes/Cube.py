@@ -42,7 +42,10 @@ class Cube:
         return self.side_mapping[side]
 
     def f_turn(self) -> None:
-        """Turn the front side of the cube clockwise."""
+        """Turn the front side of the cube clockwise.
+        This works by saving the state of all the relevant sides,
+        then reassigning items in the array by referencing parts of the original.
+        """
 
         # Save the original states for reference
         original_front = [row[:] for row in self.__front]
@@ -73,12 +76,17 @@ class Cube:
             self.__left[i][2] = original_bottom[0][i]
 
     def f_turn_prime(self) -> None:
-        """Turn the front side of the cube counter-clockwise."""
+        """Turn the front side of the cube counter-clockwise.
+        This works by turning clockwise 3 times.
+        """
         for i in range(3):
             self.f_turn()
 
     def b_turn(self) -> None:
-        """Turn the back side of the cube clockwise."""
+        """Turn the back side of the cube clockwise.
+        This works by saving the state of all the relevant sides,
+        then reassigning items in the array by referencing parts of the original.
+        """
         # Save the original states for reference
         original_back = [row[:] for row in self.__back]
         original_top = [row[:] for row in self.__top]
@@ -108,12 +116,16 @@ class Cube:
             self.__right[i][2] = original_bottom[2][2 - i]
 
     def b_turn_prime(self) -> None:
-        """Turn the back side of the cube counter-clockwise."""
+        """Turn the back side of the cube counter-clockwise.
+        This works by turning clockwise 3 times.
+        """
         for i in range(3):
             self.b_turn()
 
     def __str__(self) -> str:
         """Return a visual representation of the cube.
+        Works by looping through the different sides and adding them
+        to the string.
 
         Returns:
             str: Visual representation of the cube, in a sideways t form
