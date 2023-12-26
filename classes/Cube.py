@@ -14,7 +14,7 @@ class Cube:
         R = fg(255, 0, 0) + "R"
         O = fg(255, 165, 0) + "O"
         # Next 6 attributes are the sides
-        self.__front = [[G, G, G], [G, G, G], [G, G, G]]
+        self.__front = [[R, G, G], [B, G, G], [Y, G, G]]
         self.__back = [[B, B, B], [B, B, B], [B, B, B]]
         self.__top = [[W, W, W], [W, W, W], [W, W, W]]
         self.__bottom = [[Y, Y, Y], [Y, Y, Y], [Y, Y, Y]]
@@ -121,6 +121,166 @@ class Cube:
         """
         for i in range(3):
             self.b_turn()
+
+    def u_turn(self) -> None:
+        """Turn the top side of the cube clockwise.
+        This works by saving the state of all the relevant sides,
+        then reassigning items in the array by referencing parts of the original.
+        """
+        # Save the original states for reference
+        original_top = [row[:] for row in self.__top]
+        original_front = [row[:] for row in self.__front]
+        original_right = [row[:] for row in self.__right]
+        original_back = [row[:] for row in self.__back]
+        original_left = [row[:] for row in self.__left]
+
+        # turn the top side
+        for i in range(3):
+            for j in range(3):
+                self.__top[j][2 - i] = original_top[i][j]
+
+        # update the front side
+        for i in range(3):
+            self.__front[0][i] = original_right[0][i]
+
+        # update the right side
+        for i in range(3):
+            self.__right[0][i] = original_back[0][i]
+
+        # update the back side
+        for i in range(3):
+            self.__back[0][i] = original_left[0][i]
+
+        # update the left side
+        for i in range(3):
+            self.__left[0][i] = original_front[0][i]
+
+    def u_turn_prime(self) -> None:
+        """Turn the top side of the cube counter-clockwise.
+        This works by turning clockwise 3 times.
+        """
+        for i in range(3):
+            self.u_turn()
+
+    def d_turn(self) -> None:
+        """Turn the bottom side of the cube clockwise.
+        This works by saving the state of all the relevant sides,
+        then reassigning items in the array by referencing parts of the original.
+        """
+        # Save the original states for reference
+        original_bottom = [row[:] for row in self.__bottom]
+        original_front = [row[:] for row in self.__front]
+        original_right = [row[:] for row in self.__right]
+        original_back = [row[:] for row in self.__back]
+        original_left = [row[:] for row in self.__left]
+
+        # turn the bottom side
+        for i in range(3):
+            for j in range(3):
+                self.__bottom[j][2 - i] = original_bottom[i][j]
+
+        # update the front side
+        for i in range(3):
+            self.__front[2][i] = original_left[2][i]
+
+        # update the right side
+        for i in range(3):
+            self.__right[2][i] = original_front[2][i]
+
+        # update the back side
+        for i in range(3):
+            self.__back[2][i] = original_right[2][i]
+
+        # update the left side
+        for i in range(3):
+            self.__left[2][i] = original_back[2][i]
+
+    def d_turn_prime(self) -> None:
+        """Turn the bottom side of the cube counter-clockwise.
+        This works by turning clockwise 3 times.
+        """
+        for i in range(3):
+            self.d_turn()
+    
+    def r_turn(self) -> None:
+        """Turn the right side of the cube clockwise.
+        This works by saving the state of all the relevant sides,
+        then reassigning items in the array by referencing parts of the original.
+        """
+        # Save the original states for reference
+        original_right = [row[:] for row in self.__right]
+        original_front = [row[:] for row in self.__front]
+        original_bottom = [row[:] for row in self.__bottom]
+        original_back = [row[:] for row in self.__back]
+        original_top = [row[:] for row in self.__top]
+
+        # turn the right side
+        for i in range(3):
+            for j in range(3):
+                self.__right[j][2 - i] = original_right[i][j]
+
+        # update the front side
+        for i in range(3):
+            self.__front[i][2] = original_bottom[i][2]
+
+        # update the top side
+        for i in range(3):
+            self.__top[i][2] = original_front[i][2]
+
+        # update the back side
+        for i in range(3):
+            self.__back[2 - i][0] = original_top[i][2]
+
+        # update the bottom side
+        for i in range(3):
+            self.__bottom[i][2] = original_back[2 - i][0]
+    
+    def r_turn_prime(self) -> None:
+        """Turn the right side of the cube counter-clockwise.
+        This works by turning clockwise 3 times.
+        """
+        for i in range(3):
+            self.r_turn()
+
+    def l_turn(self) -> None:
+        """Turn the left side of the cube clockwise.
+        This works by saving the state of all the relevant sides,
+        then reassigning items in the array by referencing parts of the original.
+        """
+        # Save the original states for reference
+        original_left = [row[:] for row in self.__left]
+        original_front = [row[:] for row in self.__front]
+        original_bottom = [row[:] for row in self.__bottom]
+        original_back = [row[:] for row in self.__back]
+        original_top = [row[:] for row in self.__top]
+
+        # turn the left side
+        for i in range(3):
+            for j in range(3):
+                self.__left[j][2 - i] = original_left[i][j]
+
+        # update the front side
+        for i in range(3):
+            self.__front[i][0] = original_top[i][0]
+
+        # update the top side
+        for i in range(3):
+            self.__top[i][0] = original_back[2 - i][2]
+
+        # update the back side
+        for i in range(3):
+            self.__back[2 - i][2] = original_bottom[i][0]
+
+        # update the bottom side
+        for i in range(3):
+            self.__bottom[i][0] = original_front[i][0]
+
+    def l_turn_prime(self) -> None:
+        """Turn the left side of the cube counter-clockwise.
+        This works by turning clockwise 3 times.
+        """
+        for i in range(3):
+            self.l_turn()
 
     def __str__(self) -> str:
         """Return a visual representation of the cube.
