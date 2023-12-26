@@ -315,6 +315,16 @@ class Cube:
             cube_string += fg(0, 0, 0) + "X X X "
             for inner_item in item:
                 cube_string += inner_item + " "
-            cube_string += fg(0, 0, 0) + "X X X X X X\n"
+            cube_string += fg(0, 0, 0) + "X X X X X X\n" + fg.rs
 
         return cube_string
+
+    def __repr__(self) -> None:
+        repr_string = ""
+        for side in self.side_mapping:
+            repr_string += f"{side}: "
+            for item in self.get_side(side):
+                for inner_item in item:
+                    repr_string += inner_item + " "
+            repr_string += "\n" + fg.rs
+        return repr_string
