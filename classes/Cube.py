@@ -14,7 +14,7 @@ class Cube:
         R = fg(255, 0, 0) + "R"
         O = fg(255, 165, 0) + "O"
         # Next 6 attributes are the sides
-        self.__front = [[R, G, G], [B, G, G], [Y, G, G]]
+        self.__front = [[G, G, G], [G, G, G], [G, G, G]]
         self.__back = [[B, B, B], [B, B, B], [B, B, B]]
         self.__top = [[W, W, W], [W, W, W], [W, W, W]]
         self.__bottom = [[Y, Y, Y], [Y, Y, Y], [Y, Y, Y]]
@@ -201,7 +201,7 @@ class Cube:
         """
         for i in range(3):
             self.d_turn()
-    
+
     def r_turn(self) -> None:
         """Turn the right side of the cube clockwise.
         This works by saving the state of all the relevant sides,
@@ -234,7 +234,7 @@ class Cube:
         # update the bottom side
         for i in range(3):
             self.__bottom[i][2] = original_back[2 - i][0]
-    
+
     def r_turn_prime(self) -> None:
         """Turn the right side of the cube counter-clockwise.
         This works by turning clockwise 3 times.
