@@ -291,7 +291,7 @@ class Cube:
             str: Visual representation of the cube, in a sideways t form
         """
         # the top 3 lines, representing the top side
-        cube_string = ""
+        cube_string = "\n"
         for item in self.get_side("top"):
             cube_string += fg(0, 0, 0) + "X X X "
             for inner_item in item:
