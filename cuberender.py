@@ -19,42 +19,16 @@ def Front():
 def Back():
     glBegin(GL_QUADS)
 
-    # # this is the same as front, but index 0 on each tuple is * -1
-    # parts = [
-    #     ((1, 1), (0.33, 1), (0.33, 0.33), (1, 0.33)),  # Up Left
-    #     ((0.33, 1), (-0.33, 1), (-0.33, 0.33), (0.33, 0.33)),  # Up Middle
-    #     ((-0.33, 1), (-1, 1), (-1, 0.33), (-0.33, 0.33)),  # Up Right
-    #     ((1, 0.33), (0.33, 0.33), (0.33, -0.33), (1, -0.33)),  # Middle Left
-    #     ((0.33, 0.33), (-0.33, 0.33), (-0.33, -0.33), (0.33, -0.33)),  # Middle Middle
-    #     ((-0.33, 0.33), (-1, 0.33), (-1, -0.33), (-0.33, -0.33)),  # Middle Right
-    #     ((1, -0.33), (0.33, -0.33), (0.33, -1), (1, -1)),  # Down Left
-    #     ((0.33, -0.33), (-0.33, -0.33), (-0.33, -1), (0.33, -1)),  # Down Middle
-    #     ((-0.33, -0.33), (-1, -0.33), (-1, -1), (-0.33, -1)),  # Down Right
-    # ]
-
     for i, part in enumerate(parts):
         glColor3fv(colors[i])
         for vertex in part:
-            glVertex3fv((vertex[0], vertex[1] -1))
+            glVertex3fv((vertex[0], vertex[1], -1))
 
     glEnd()
 
 
 def Top():
     glBegin(GL_QUADS)
-
-    # # this is the same as front, but index 1 on each tuple is * -1
-    # parts = [
-    #     ((-1, -1), (-0.33, -1), (-0.33, -0.33), (-1, -0.33)),  # Up Left
-    #     ((-0.33, -1), (0.33, -1), (0.33, -0.33), (-0.33, -0.33)),  # Up Middle
-    #     ((0.33, -1), (1, -1), (1, -0.33), (0.33, -0.33)),  # Up Right
-    #     ((-1, -0.33), (-0.33, -0.33), (-0.33, 0.33), (-1, 0.33)),  # Middle Left
-    #     ((-0.33, -0.33), (0.33, -0.33), (0.33, 0.33), (-0.33, 0.33)),  # Middle Middle
-    #     ((0.33, -0.33), (1, -0.33), (1, 0.33), (0.33, 0.33)),  # Middle Right
-    #     ((-1, 0.33), (-0.33, 0.33), (-0.33, 1), (-1, 1)),  # Down Left
-    #     ((-0.33, 0.33), (0.33, 0.33), (0.33, 1), (-0.33, 1)),  # Down Middle
-    #     ((0.33, 0.33), (1, 0.33), (1, 1), (0.33, 1)),  # Down Right
-    # ]
 
     for i, part in enumerate(parts):
         glColor3fv(colors[i])
@@ -77,37 +51,37 @@ def Bottom():
 
 def Right():
     glBegin(GL_QUADS)
-    
-    # # this is the same as front, but index 0 on each tuple is * -1
-    # parts = [
-    #     ((1, 1), (0.33, 1), (0.33, 0.33), (1, 0.33)),  # Up Left
-    #     ((0.33, 1), (-0.33, 1), (-0.33, 0.33), (0.33, 0.33)),  # Up Middle
-    #     ((-0.33, 1), (-1, 1), (-1, 0.33), (-0.33, 0.33)),  # Up Right
-    #     ((1, 0.33), (0.33, 0.33), (0.33, -0.33), (1, -0.33)),  # Middle Left
-    #     ((0.33, 0.33), (-0.33, 0.33), (-0.33, -0.33), (0.33, -0.33)),  # Middle Middle
-    #     ((-0.33, 0.33), (-1, 0.33), (-1, -0.33), (-0.33, -0.33)),  # Middle Right
-    #     ((1, -0.33), (0.33, -0.33), (0.33, -1), (1, -1)),  # Down Left
-    #     ((0.33, -0.33), (-0.33, -0.33), (-0.33, -1), (0.33, -1)),  # Down Middle
-    #     ((-0.33, -0.33), (-1, -0.33), (-1, -1), (-0.33, -1)),  # Down Right
-    # ]
-    
+
     for i, part in enumerate(parts):
         glColor3fv(colors[i])
         for vertex in part:
             glVertex3fv((1, vertex[1], -vertex[0]))
-    
+
     glEnd()
 
 
 def Left():
     glBegin(GL_QUADS)
-    
+
     for i, part in enumerate(parts):
         glColor3fv(colors[i])
         for vertex in part:
             glVertex3fv((-1, vertex[1], vertex[0]))
-    
+
     glEnd()
+
+
+def Render_Cube():
+    """Renders the cube sides, updates the screen and waits 10ms"""
+    Front()
+    Back()
+    Top()
+    Bottom()
+    Right()
+    Left()
+    pygame.display.flip()
+    pygame.time.wait(10)
+
 
 # temp list of random colours
 colors = [
@@ -123,48 +97,72 @@ colors = [
 ]
 
 parts = [
-        ((-1, 1), (-0.33, 1), (-0.33, 0.33), (-1, 0.33)),  # Up Left
-        ((-0.33, 1), (0.33, 1), (0.33, 0.33), (-0.33, 0.33)),  # Up Middle
-        ((0.33, 1), (1, 1), (1, 0.33), (0.33, 0.33)),  # Up Right
-        ((-1, 0.33), (-0.33, 0.33), (-0.33, -0.33), (-1, -0.33)),  # Middle Left
-        ((-0.33, 0.33), (0.33, 0.33), (0.33, -0.33), (-0.33, -0.33)),  # Middle Middle
-        ((0.33, 0.33), (1, 0.33), (1, -0.33), (0.33, -0.33)),  # Middle Right
-        ((-1, -0.33), (-0.33, -0.33), (-0.33, -1), (-1, -1)),  # Down Left
-        ((-0.33, -0.33), (0.33, -0.33), (0.33, -1), (-0.33, -1)),  # Down Middle
-        ((0.33, -0.33), (1, -0.33), (1, -1), (0.33, -1)),  # Down Right
-    ]
+    ((-1, 1), (-0.33, 1), (-0.33, 0.33), (-1, 0.33)),  # Up Left
+    ((-0.33, 1), (0.33, 1), (0.33, 0.33), (-0.33, 0.33)),  # Up Middle
+    ((0.33, 1), (1, 1), (1, 0.33), (0.33, 0.33)),  # Up Right
+    ((-1, 0.33), (-0.33, 0.33), (-0.33, -0.33), (-1, -0.33)),  # Middle Left
+    ((-0.33, 0.33), (0.33, 0.33), (0.33, -0.33), (-0.33, -0.33)),  # Middle Middle
+    ((0.33, 0.33), (1, 0.33), (1, -0.33), (0.33, -0.33)),  # Middle Right
+    ((-1, -0.33), (-0.33, -0.33), (-0.33, -1), (-1, -1)),  # Down Left
+    ((-0.33, -0.33), (0.33, -0.33), (0.33, -1), (-0.33, -1)),  # Down Middle
+    ((0.33, -0.33), (1, -0.33), (1, -1), (0.33, -1)),  # Down Right
+]
 
-# proves that i can use the - so I only need one parts list
-for i, part in enumerate(parts):
-        for vertex in part:
-            print(vertex[0])
-            input("Next: ")
-            print(-vertex[0])
-            
+# broken currently
+x_rotation_vectors = [(1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1)]
 
+x_rotation_counter = 0
+
+y_rotation_vectors = [(0, 1, 0), (0, 0, 1), (0, -1, 0), (0, 0, -1)]
+
+y_rotation_counter = 0
+
+# init pygame and openGL
 pygame.init()
 display = (800, 600)
 pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
 
 glEnable(GL_DEPTH_TEST)
 
+# set up the camera
 gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
 
+# move the camera back
 glTranslatef(0.0, 0.0, -5)
 
+# tiny rotate to give some perspective
+glRotatef(-23, -1, 1, 0)
+
 while True:
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
+    # renders all sides of the cube
+    Render_Cube()
+
+    # event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
 
-    glRotatef(1, 3, 1, 1)
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-    Front()
-    Back()
-    Top()
-    Bottom()
-    Right()
-    Left()
-    pygame.display.flip()
-    pygame.time.wait(10)
+        # rotates the cube front side to top (x-axis)
+        if event.type == KEYDOWN and event.key == K_x:
+            for i in range(6):
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+                glRotatef(-15, *x_rotation_vectors[x_rotation_counter])
+                Render_Cube()
+
+            # changes the rotation counter, which in turn references a
+            # different rotation vector when rotating y-axis
+            y_rotation_counter += 1 if y_rotation_counter < 3 else -3
+            
+        # rotates the cube front side to left (y-axis)
+        if event.type == KEYDOWN and event.key == K_y:
+            for i in range(6):
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+                glRotatef(-15, *y_rotation_vectors[y_rotation_counter])
+                Render_Cube()
+
+            # changes the rotation counter, which in turn references a
+            # different rotation vector when rotating x-axis
+            x_rotation_counter += 1 if x_rotation_counter < 3 else -3
