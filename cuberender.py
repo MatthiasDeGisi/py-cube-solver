@@ -1,3 +1,6 @@
+    """Might have to scrap this one :(
+    """
+
 import classes.Cube as c
 import pygame
 from pygame.locals import *
@@ -108,12 +111,12 @@ parts = [
     ((0.33, -0.33), (1, -0.33), (1, -1), (0.33, -1)),  # Down Right
 ]
 
-# broken currently
-x_rotation_vectors = [(1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1)]
+# # broken currently
+# x_rotation_vectors = [(1, 0, 0), (0, 0, -1), (-1, 0, 0), (0, 0, 1)]
 
 x_rotation_counter = 0
 
-y_rotation_vectors = [(0, 1, 0), (0, 0, 1), (0, -1, 0), (0, 0, -1)]
+# y_rotation_vectors = [(0, 1, 0), (0, 0, 1), (0, -1, 0), (0, 0, -1)]
 
 y_rotation_counter = 0
 
@@ -133,6 +136,9 @@ glTranslatef(0.0, 0.0, -5)
 # tiny rotate to give some perspective
 glRotatef(-23, -1, 1, 0)
 
+# saves the current matrix state
+glPushMatrix()
+
 while True:
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
@@ -147,9 +153,10 @@ while True:
 
         # rotates the cube front side to top (x-axis)
         if event.type == KEYDOWN and event.key == K_x:
+            
             for i in range(6):
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-                glRotatef(-15, *x_rotation_vectors[x_rotation_counter])
+                glRotatef(-15, 1, 0, 0)
                 Render_Cube()
 
             # changes the rotation counter, which in turn references a
@@ -158,11 +165,14 @@ while True:
             
         # rotates the cube front side to left (y-axis)
         if event.type == KEYDOWN and event.key == K_y:
+
             for i in range(6):
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-                glRotatef(-15, *y_rotation_vectors[y_rotation_counter])
+                glRotatef(-15, 0, 1, 0)
+                # glRotatef(-15, *y_rotation_vectors[y_rotation_counter])
                 Render_Cube()
 
             # changes the rotation counter, which in turn references a
             # different rotation vector when rotating x-axis
             x_rotation_counter += 1 if x_rotation_counter < 3 else -3
+
