@@ -1,4 +1,5 @@
-"""Might have to scrap this one :(
+"""This file is now more of a proof of concept than anything else.
+It was made using deprecated functions of pyopengl, and should not be used.
 """
 
 import classes.Cube as c
