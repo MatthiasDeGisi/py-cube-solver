@@ -1,5 +1,5 @@
-    """Might have to scrap this one :(
-    """
+"""Might have to scrap this one :(
+"""
 
 import classes.Cube as c
 import pygame
@@ -153,7 +153,6 @@ while True:
 
         # rotates the cube front side to top (x-axis)
         if event.type == KEYDOWN and event.key == K_x:
-            
             for i in range(6):
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
                 glRotatef(-15, 1, 0, 0)
@@ -162,10 +161,9 @@ while True:
             # changes the rotation counter, which in turn references a
             # different rotation vector when rotating y-axis
             y_rotation_counter += 1 if y_rotation_counter < 3 else -3
-            
+
         # rotates the cube front side to left (y-axis)
         if event.type == KEYDOWN and event.key == K_y:
-
             for i in range(6):
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
                 glRotatef(-15, 0, 1, 0)
@@ -175,4 +173,3 @@ while True:
             # changes the rotation counter, which in turn references a
             # different rotation vector when rotating x-axis
             x_rotation_counter += 1 if x_rotation_counter < 3 else -3
-
