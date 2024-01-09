@@ -2,7 +2,6 @@
 It was made using deprecated functions of pyopengl, and should not be used.
 """
 
-import classes.Cube as c
 import pygame
 from pygame.locals import *
 from OpenGL.GL import *
