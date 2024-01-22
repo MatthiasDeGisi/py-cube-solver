@@ -1,5 +1,5 @@
-    """Might have to scrap this one :(
-    """
+"""Might have to scrap this one :(
+"""
 
 import classes.Cube as c
 import pygame
