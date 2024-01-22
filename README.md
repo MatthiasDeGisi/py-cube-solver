@@ -6,16 +6,3 @@ This project aims to make an app that can help solve a rubiks cube! Not quite su
 - PyOpenGL. To install, run `pip install PyOpenGL`
 ## Array Visualization
 ![Visualization of the cube's arrays](docs/array-vis.png)
-## Vertices Maps
-Front:
-![Front](docs/OpenGLFrontVertMap.png)
-Back:
-![Back](docs/OpenGLBackVertMap.png)
-Top:
-![Top](docs/OpenGLTopVertMap.png)
-Bottom:
-![Bottom](docs/OpenGLBottomVertMap.png)
-Left:
-![Left](docs/OpenGLLeftVertMap.png)
-Right:
-![Right](docs/OpenGLRightVertMap.png)
